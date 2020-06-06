@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<body style="background-color:powderblue;">
+<meta name="author"content="AMARA THARUN KRISHNA">
+<h1 style="font-size:32pt">Intrest Calculator</h1>
+<h3>Developed By Amara Tharun Krishna</h3>
+<button onclick="window.print()" style="width:250px; height:80px; position:absolute; top:10px; right:10px; background-color:Chartreuse; font-size:20pt;">Print this Page</button>
+<button onclick="compound()" style="width:300px; height:120px; position:absolute; top:500px; left:400px; background-color:#FFCC33; font-size:25pt;">Compound intrest</button>
+<input type="number" id="num1" style="height:80px;font-size:32pt" size="30" placeholder="Enter amount">
+<br>
+<input type="number" id="num2" style="height:80px;font-size:32pt" size="30" placeholder="Enter Rate of Intrest">
+<br>
+<form action="includes/contact.php" method="post">
+<label for="num3" style="font-size:32pt;">From Date&nbsp;:</label>
+<input type="date" id="num3" style="height:80px;font-size:32pt;" size="30">
+<br>
+<label for="num4" style="font-size:32pt;">To Date&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</label>
+<input type="date" id="num4" style="left:10px;height:80px;font-size:32pt" size="30">
+<br>
+</form>
+<button onclick="calculate()" style="width:300px; position:absolute; top:500px; left:10px; height:120px; font-size:25pt; background-color:#99FF66;">Simple intrest</button>
+<p id="a0" style="font-size:32pt; position:absolute; top:600px; left:10px;color:#FF3366"></p>
+<p id="a1" style="font-size:32pt; position:absolute; top:650px; left:10px;"></p>
+<p id="a2" style="font-size:32pt; position:absolute; top:700px; left:10px;"></p>
+<p id="a3" style="font-size:32pt; position:absolute; top:750px; left:10px;"></p>
+<p id="a4" style="font-size:32pt; position:absolute; top:800px; left:10px;"></p>
+<p id="a5" style="font-size:32pt; position:absolute; top:850px; left:10px;"></p>
+<p id="a6" style="font-size:32pt; position:absolute; top:900px; left:10px;"></p>
+<p id="a7" style="font-size:32pt; position:absolute; top:950px; left:10px;"></p>
+<p id="a8" style="font-size:32pt; position:absolute; top:1000px; left:10px;"></p>
+<script>
+function calculate()
+{
+var amnt,intrest,a,b,c,k,l,m,d,mn,ye,per_mnt,per_day,h,amnt1,intrest1,str,str1;
+amnt=document.getElementById("num1").value;
+intrest=document.getElementById("num2").value;
+amnt1=parseInt(amnt);
+intrest1=parseFloat(intrest);
+str=document.getElementById("num3").value;
+str1=document.getElementById("num4").value;
+var [e,f,g]=str.split("-");
+var [i,j,x]=str1.split("-");
+k=parseInt(g);l=parseInt(f);m=parseInt(e);
+a=parseInt(x);b=parseInt(j);c=parseInt(i);
+if(a<k)
+{
+d=(a+30)-k;
+b=b-1;
+}
+else{
+d=a-k;
+}
+if(b<l){
+mn=(b+12)-l;
+c=c-1;
+}
+else{
+mn=b-l;
+}
+y=c-m;
+ye=y*12;
+per_mnt=amnt1*(intrest1/100);
+per_day=per_mnt/30;
+h=(ye*per_mnt)+(mn*per_mnt)+(d*per_day);
+var t_amt=(amnt1+h).toFixed(2);
+var per_mnt1=(per_mnt).toFixed(2);
+var per_day1=(per_day).toFixed(2);
+var h1=(h).toFixed(2);
+if(!isNaN(y))
+{
+document.getElementById("a0").innerHTML="Simple intrest :-";
+document.getElementById("a1").innerHTML="principle amount = "+amnt1;
+document.getElementById("a2").innerHTML="Rate of Intrest = "+intrest;
+document.getElementById("a3").innerHTML="From date = "+g+"-"+f+"-"+e;
+document.getElementById("a4").innerHTML="To Date = "+x+"-"+j+"-"+i;
+document.getElementById("a5").innerHTML=y+" Year "+mn+" months "+d+" days";
+document.getElementById("a6").innerHTML="Intrest = "+h1;
+document.getElementById("a7").innerHTML="total amount = "+t_amt;
+document.getElementById("a8").innerHTML="Intrest per month = "+per_mnt1;
+}
+}
+function compound()
+{
+var amnt,intrest,a,b,c,k,l,m,d,mn,ye,per_mnt,per_day,h,amnt1,intrest1,str,str1;
+amnt=document.getElementById("num1").value;
+intrest=document.getElementById("num2").value;
+amnt1=parseInt(amnt);
+intrest1=parseFloat(intrest);
+str=document.getElementById("num3").value;
+str1=document.getElementById("num4").value;
+var [e,f,g]=str.split("-");
+var [i,j,x]=str1.split("-");
+k=parseInt(g);l=parseInt(f);m=parseInt(e);
+a=parseInt(x);b=parseInt(j);c=parseInt(i);
+if(a<k)
+{
+d=(a+30)-k;
+b=b-1;
+}
+else{
+d=a-k;
+}
+if(b<l){
+mn=(b+12)-l;
+c=c-1;
+}
+else{
+mn=b-l;
+}
+y=c-m;
+var amnt2,z,ja,sa,amnt3;
+amnt2=amnt1;
+for(var ij = 0;ij<y;ij++)
+{
+   z=amnt2*(intrest1/100);
+   z=z*12;
+   amnt2=amnt2+z;
+}
+ja=amnt2*(intrest1/100);
+sa=(ja/30)*d;
+ja=ja*mn
+amnt2=amnt2+ja+sa;
+amnt3=amnt2-amnt1;
+var amnt4=amnt3.toFixed(2);
+var amnt5=amnt2.toFixed(2);
+if(!isNaN(y))
+{
+document.getElementById("a0").innerHTML="Yearly Compound intrest :-";
+document.getElementById("a1").innerHTML="Principle amount = "+amnt1;
+document.getElementById("a2").innerHTML="Rate of Intrest = "+intrest;
+document.getElementById("a3").innerHTML="From date = "+g+"-"+f+"-"+e;
+document.getElementById("a4").innerHTML="To Date = "+x+"-"+j+"-"+i;
+document.getElementById("a5").innerHTML=y+" Year "+mn+" months "+d+" days";
+document.getElementById("a6").innerHTML="Intrest = "+amnt4;
+document.getElementById("a7").innerHTML="total amount = "+amnt5;
+document.getElementById("a8").innerHTML="";
+}
+}
+</script>
+</body>
+</html>
